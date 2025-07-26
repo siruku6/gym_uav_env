@@ -1,0 +1,31 @@
+version: '3.7'
+services:
+  pip_env:
+    build:
+      context: ../../
+      dockerfile: ./docker/pip_env/Dockerfile
+      args:
+        WORKING_DIRECTORY: ${WORKING_DIRECTORY}
+    environment:
+      - TZ=Asia/Tokyo
+      - PYTHONPATH=/${WORKING_DIRECTORY}:/${WORKING_DIRECTORY}/src
+      - JUPYTER_PORT=${JUPYTER_PORT}
+      - JUPYTER_PASSWORD=${JUPYTER_PASSWORD}
+
+    # Fix slow shutdown of web container
+    init: true
+    volumes:
+      # bind mount
+      - ../../:/${WORKING_DIRECTORY}
+    ports:
+      - ${JUPYTER_PORT}:${JUPYTER_PORT}
+
+    # INFO: Following two lines are necessary for the backtrace by pdb
+    stdin_open: true
+    tty: true
+
+    command: >
+      bash -c "
+        jupyter notebook --no-browser --ip=0.0.0.0 --port ${JUPYTER_PORT} --allow-root --NotebookApp.token=${JUPYTER_PASSWORD}
+      "
+    working_dir: "/${WORKING_DIRECTORY}"
