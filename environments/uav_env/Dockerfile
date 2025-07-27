@@ -9,10 +9,18 @@ RUN export DEBIAN_FRONTEND=noninteractive \
     gcc g++ libc-dev \
     # For development and debug (procps: `free -h`)
     bash curl git net-tools vim procps \
-    # # For pyvirtualdisplay, gym-notebook-wrapper
-    # xvfb \
-    # # For mpi4py
-    # cmake libopenmpi-dev zlib1g-dev \
+    # # For scikit-learn (scipy)
+    # gfortran libopenblas-dev liblapack-dev \
+    # For opencv-python
+    libopencv-dev \
+    # For gym-notebook-wrapper
+    xvfb \
+    # For creating mp4 file with matplotlib.animation.FFMpegWriter
+    ffmpeg \
+    # For building modules, for example pafprocess, Box2d
+    swig \
+    # For mpi4py
+    cmake libopenmpi-dev zlib1g-dev \
     && apt clean \
     && rm -rf /var/lib/apt/lists/*
 
@@ -24,5 +32,5 @@ ARG WORKING_DIRECTORY
 WORKDIR /${WORKING_DIRECTORY}
 
 # Install pip modules
-COPY ./docker/pip_env/requirements.txt ./
+COPY ./environments/uav_env/requirements.txt ./
 RUN pip install -r requirements.txt

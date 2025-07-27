@@ -1,0 +1,54 @@
+jupyter==1.0.0
+matplotlib==3.10.1
+mlflow==2.22.0
+numpy==2.0.0
+# opencv-python==4.8.0.76
+pandas==2.2.3
+pillow==10.4.0
+pytest==8.3.5
+scikit-learn==1.6.1
+seaborn==0.13.1
+tensorboard==2.19.0
+tensorboard-data-server==0.7.2
+tensorboard-plugin-wit==1.8.1
+tqdm==4.67.1
+
+# ---------------------
+# Concerning RL
+# ---------------------
+# NOTE: gymnasium[box2d] に入っている
+# Box2d==2.3.2
+# box2d-kengz==2.3.3
+# pygame-2.5.2
+
+cpprb==11.0.0
+Cython==0.29.35
+gym-notebook-wrapper==1.3.3  # MP4 ファイル作成用のライブラリ
+gymnasium[box2d]==1.1.1
+# mujoco==3.1.3
+pybullet==3.2.6
+pyglet==2.0.15
+stable-baselines3==2.6.0
+
+# NOTE: progress bar を表示するのには必要だが、現在使用中のPython バージョン(3.10)と適合しないため、今は使えない
+# https://stable-baselines3.readthedocs.io/en/master/guide/callbacks.html
+# stable-baselines3[extra]==2.6.0
+# 代わりに、[extra] に自動で含まれるはずの rich をインストールする
+rich==13.7.1
+
+# JSAnimation==0.1
+# parapara-anime==0.1.0
+parapara-anime @ git+https://github.com/siruku6/parapara-anime.git@v0.2.1
+pybullet_sim_vis @ git+https://github.com/siruku6/pybullet_sim_vis.git@issue-1
+
+# ---------------------
+# torch install
+# ---------------------
+# pip3 install torch==2.1.2 torchvision==0.16.2 torchaudio==2.1.2 --index-url https://download.pytorch.org/whl/cpu
+# --find-links https://download.pytorch.org/whl/cu113
+--find-links https://download.pytorch.org/whl/cpu
+# torch==2.2.1+cu121
+torch==2.4.1
+# torchvision==0.16.2
+# torchaudio==2.1.2
+lightning==2.5.1
