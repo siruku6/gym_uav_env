@@ -4,4 +4,13 @@ build/
 dist/
 
 .env
-notebooks
+notebooks/
+logs/
+mlruns/
+
+outputs/**
+!outputs/.keep
+data/**
+!data/.keep
+
+.DS_Store
